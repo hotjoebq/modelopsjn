@@ -1,10 +1,6 @@
-numpy==1.21.6
-pandas==1.0.3
 xgboost==1.6.2
 scikit-learn==1.0.2
-shap==0.41.0
-matplotlib==3.2.1
 teradataml==17.20.0.3
 nyoka==5.4.0
 aoa==7.0.1
-SQLAlchemy==1.4.44
+matplotlib==3.2.1
