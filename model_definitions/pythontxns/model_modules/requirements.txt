@@ -3,4 +3,4 @@ scikit-learn==1.0.2
 teradataml==17.20.0.3
 nyoka==5.4.0
 aoa==7.0.1
-matplotlib==3.2.1
+matplotlib==3.5.2
