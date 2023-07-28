@@ -56,7 +56,8 @@ def train(context: ModelContext, **kwargs):
 
     print("Recording txns training stats......")
     
-    categories = ["isFraud", "CASH_OUT", "TRANSFER"]
+    #categories = ["isFraud", "CASH_OUT", "TRANSFER"]
+    categories = ["CASH_OUT", "TRANSFER"]
 
     record_training_stats(train_df,
                           features=feature_names,
