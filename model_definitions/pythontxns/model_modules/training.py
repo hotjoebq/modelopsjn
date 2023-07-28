@@ -13,14 +13,23 @@ from aoa import (
 import joblib
 
 def train(context: ModelContext, **kwargs):
+
+    print("function train starting...")
     aoa_create_context()
 
     feature_names = context.dataset_info.feature_names
     target_name = context.dataset_info.target_names[0]
 
+    print("Feature Names: ", feature_names)
+    print("Target Names: ", target_name)
+    
+    print("data set info: ", context.dataset_info.sql)
+
     # read training dataset from Teradata and convert to pandas
     train_df = DataFrame.from_query(context.dataset_info.sql)
     train_pdf = train_df.to_pandas(all_rows=True)
+
+    print(train_pdf)
 
     # split data into X and y
     X_train = train_pdf[feature_names]
@@ -57,7 +66,7 @@ def train(context: ModelContext, **kwargs):
     print("Recording txns training stats......")
     
     #categories = ["isFraud", "CASH_OUT", "TRANSFER"]
-    categories = ["CASH_OUT", "TRANSFER"]
+    categories = ["isFraud", "CASH_OUT", "TRANSFER"]
 
     record_training_stats(train_df,
                           features=feature_names,
