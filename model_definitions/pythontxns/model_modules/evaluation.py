@@ -41,7 +41,7 @@ def evaluate(context: ModelContext, **kwargs):
         'f1-score': '{:.2f}'.format(metrics.f1_score(y_test, y_pred))
     }
 
-    with open(f"{context.artifact_output_path}/txnmetrics.json", "w+") as f:
+    with open(f"{context.artifact_output_path}/metrics.json", "w+") as f:
         json.dump(evaluation, f)
 
     metrics.plot_confusion_matrix(model, X_test, y_test)
