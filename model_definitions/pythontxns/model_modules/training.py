@@ -38,9 +38,8 @@ def train(context: ModelContext, **kwargs):
     print("Starting training the txns...")
 
     # fit model to training data
-    model = Pipeline([('scaler', MinMaxScaler()),
-                      ('xgb', XGBClassifier(eta=context.hyperparams["eta"],
-                                            max_depth=context.hyperparams["max_depth"]))])
+    # no scalers here
+    model = Pipeline(steps=[('xgb', XGBClassifier(eta=context.hyperparams["eta"], max_depth=context.hyperparams["max_depth"]))])
 
     model.fit(X_train, y_train)
 
@@ -51,7 +50,7 @@ def train(context: ModelContext, **kwargs):
 
     # we can also save as pmml so it can be used for In-Vantage scoring etc.
     xgboost_to_pmml(pipeline=model, col_names=feature_names, target_name=target_name,
-                    pmml_f_name=f"{context.artifact_output_path}/txnsmodel.pmml")
+                    pmml_f_name=f"{context.artifact_output_path}/model.pmml")
     
 
     print("Saved trained txns model")
@@ -65,7 +64,6 @@ def train(context: ModelContext, **kwargs):
 
     print("Recording txns training stats......")
     
-    #categories = ["isFraud", "CASH_OUT", "TRANSFER"]
     categories = ["isFraud", "CASH_OUT", "TRANSFER"]
 
     record_training_stats(train_df,
