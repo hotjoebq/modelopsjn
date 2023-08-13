@@ -39,7 +39,7 @@ def train(context: ModelContext, **kwargs):
 
     # fit model to training data
     # no scalers here
-    model = Pipeline(steps=[('xgb', XGBClassifier(eta=context.hyperparams["eta"], max_depth=context.hyperparams["max_depth"]))])
+    model = Pipeline(steps=[('xgb', XGBClassifier(eta=context.hyperparams["eta"], max_depth=context.hyperparams["max_depth"], enable_categorical=True))])
 
     model.fit(X_train, y_train)
 
