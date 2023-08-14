@@ -23,7 +23,11 @@ def evaluate(context: ModelContext, **kwargs):
     target_name = context.dataset_info.target_names[0]
 
     test_df = DataFrame.from_query(context.dataset_info.sql)
+    print("test data in td dataframe: ", test_df)
+
     test_pdf = test_df.to_pandas(all_rows=True)
+
+    print("test data in pandas: ", test_pdf)
 
     X_test = test_pdf[feature_names]
     y_test = test_pdf[target_name]
