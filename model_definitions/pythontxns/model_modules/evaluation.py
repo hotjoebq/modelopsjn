@@ -28,7 +28,9 @@ def evaluate(context: ModelContext, **kwargs):
     X_test = test_pdf[feature_names]
     y_test = test_pdf[target_name]
 
-    X_test = X_test.astype({"step": 'int8', "CASH_OUT": 'int8', "TRANSFER": 'int8'})
+    #errorbalanceOrig, errorBalanceDest, amount, oldbalanceOrig, newbalanceOrig, oldbalanceDest, newbalanceDest
+
+    X_test = X_test.astype({"step": 'int8', "CASH_OUT": 'int8', "TRANSFER": 'int8', "errorbalanceOrig": 'float32', "errorBalanceDest": 'float32', "amount": 'float32', "oldbalanceOrig": 'float32', "newbalanceOrig": 'float32', "oldbalanceDest": 'float32', "newbalanceDest": 'float32'})
     
     y_test = y_test.astype({"isFraud": 'int8'})
 
