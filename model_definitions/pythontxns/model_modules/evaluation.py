@@ -31,11 +31,19 @@ def evaluate(context: ModelContext, **kwargs):
     #errorbalanceOrig, errorBalanceDest, amount, oldbalanceOrig, newbalanceOrig, oldbalanceDest, newbalanceDest
 
     X_test = X_test.astype({"step": 'int8', "CASH_OUT": 'int8', "TRANSFER": 'int8', "errorbalanceOrig": 'float32', "errorBalanceDest": 'float32', "amount": 'float32', "oldbalanceOrig": 'float32', "newbalanceOrig": 'float32', "oldbalanceDest": 'float32', "newbalanceDest": 'float32'})
+
+    print("shape of the X_test: ", X_test.shape)
     
     y_test = y_test.astype({"isFraud": 'int8'})
 
+    print("shape of the y_test: ", y_test.shape)
+
     print("Scoring the txns...")
     y_pred = model.predict(X_test)
+
+    print("Shape of the y_pred: ", y_pred.shape)
+
+    print("y_prd values: ", y_pred)
 
     y_pred_tdf = pd.DataFrame(y_pred, columns=[target_name])
     y_pred_tdf["txn_id"] = test_pdf["txn_id"].values
