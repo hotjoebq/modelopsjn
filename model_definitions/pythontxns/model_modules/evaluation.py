@@ -28,6 +28,10 @@ def evaluate(context: ModelContext, **kwargs):
     X_test = test_pdf[feature_names]
     y_test = test_pdf[target_name]
 
+    X_test = X_test.astype({"CASH_OUT": 'int8', "TRANSFER": 'int8'})
+    
+    y_test = y_test.astype({"isFraud": 'int8'})
+
     print("Scoring the txns...")
     y_pred = model.predict(X_test)
 
