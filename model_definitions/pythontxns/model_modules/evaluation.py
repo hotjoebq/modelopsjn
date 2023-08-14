@@ -20,9 +20,17 @@ def evaluate(context: ModelContext, **kwargs):
     model = joblib.load(f"{context.artifact_input_path}/model.joblib")
 
     feature_names = context.dataset_info.feature_names
+
+    print("feature names: ", feature_names)
+    
     target_name = context.dataset_info.target_names[0]
 
+    print("target_name: ", target_name)
+
+    print("dataset info sql: ", context.dataset_info.sql)
+
     test_df = DataFrame.from_query(context.dataset_info.sql)
+
     print("test data in td dataframe: ", test_df)
 
     test_pdf = test_df.to_pandas(all_rows=True)
